@@ -73,7 +73,7 @@ int main()
             break;
 
         default:
-            printf("Invalid input!");
+            printf("Invalid input!\n");
             break;
         }
     }

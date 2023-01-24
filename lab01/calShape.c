@@ -55,7 +55,7 @@ int main()
         case 1:
         {
             struct circle c;
-            printf("Please input the radius:\n");
+            printf("Please input the radius:");
             scanf("%lf", &c.radius);
             areaOfCircle(&c);
             printf("\n");
@@ -64,9 +64,9 @@ int main()
         case 2:
         {
             struct rectangle r;
-            printf("Please input the length:\n");
+            printf("Please input the length:");
             scanf("%lf", &r.length);
-            printf("Please input the width:\n");
+            printf("Please input the width:");
             scanf("%lf", &r.width);
             areaOfRectangle(&r);
             printf("\n");
@@ -75,7 +75,7 @@ int main()
         case 3:
         {
             struct square s;
-            printf("Please input the length:\n");
+            printf("Please input the length:");
             scanf("%lf", &s.length);
             areaOfSquare(&s);
             printf("\n");
