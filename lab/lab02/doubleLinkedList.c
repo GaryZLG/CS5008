@@ -22,8 +22,13 @@ dlist_t *initdoubleLinkedList()
     dlist_t *head = (dlist_t *)malloc(sizeof(dlist_t));
 
     int number;
-    printf("Please input the number of nodes you want to store in the LikedList:\n");
+    printf("Please input the number of nodes you want to store in the LikedList:\n(better lager than 3 nodes)");
     scanf("%d", &number);
+
+    if(number<1){
+        printf("Empty linked list");
+        return NULL;
+    }
 
     int d;
     printf("Node 1:\n");
@@ -153,6 +158,13 @@ dlist_t *deleteHead(dlist_t *head)
         printf("Empty linked list\n");
         return NULL;
     }
+    else if (head->next == NULL && head->pre == NULL)
+    {
+        freeNode(head);
+        printf("Nothing left in the linked list!");
+        return NULL;
+    }
+
     dlist_t *temp = head;
 
     temp->next->pre = NULL;
@@ -166,6 +178,12 @@ dlist_t *deleteLast(dlist_t *head)
     if (head == NULL)
     {
         printf("Empty liked list\n");
+        return NULL;
+    }
+    else if (head->next == NULL && head->pre == NULL)
+    {
+        freeNode(head);
+        printf("Nothing left in the linked list!");
         return NULL;
     }
 
@@ -185,7 +203,13 @@ dlist_t *deleteMiddle(dlist_t *head, int element)
     {
         printf("Empty linked list\n");
         return NULL;
+    }else if (head->next==NULL && head->pre==NULL)
+    {
+        freeNode(head);
+        printf("Nothing left in the linked list!");
+        return NULL;
     }
+    
     dlist_t *temp = head;
 
     while (temp->data != element && temp->next != NULL)
@@ -200,11 +224,11 @@ dlist_t *deleteMiddle(dlist_t *head, int element)
 
     if (temp->pre == NULL)
     {
-        deleteHead(head);
+        head=deleteHead(head);
     }
     else if (temp->next == NULL)
     {
-        deleteLast(head);
+        head=deleteLast(head);
     }
     else
     {
@@ -219,6 +243,11 @@ dlist_t *deleteMiddle(dlist_t *head, int element)
 
 void freeSList(dlist_t *head)
 {
+    if (head == NULL)
+    {
+        printf("Empty linked list!");
+        return;
+    }
     dlist_t *itr = head;
     while (itr != NULL)
     {
@@ -230,6 +259,10 @@ void freeSList(dlist_t *head)
 
 void inOrderPrintLinkedlist(dlist_t *head)
 {
+    if(head==NULL){
+        printf("Empty linked list!");
+        return;
+    }
     dlist_t *itr = head;
     while (itr != NULL)
     {
@@ -241,6 +274,11 @@ void inOrderPrintLinkedlist(dlist_t *head)
 
 void reverseOrderPrint(dlist_t *head)
 {
+    if (head == NULL)
+    {
+        printf("Empty linked list!");
+        return;
+    }
     dlist_t *itr = head;
     while (itr->next != NULL)
     {

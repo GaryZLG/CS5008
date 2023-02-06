@@ -108,6 +108,12 @@ slist_t *deleteHead(slist_t *head)
         printf("Empty linked list\n");
         return NULL;
     }
+    else if (head->next == NULL)
+    {
+        freeNode(head);
+        printf("Nothing left in the linked list!");
+        return NULL;
+    }
     slist_t *temp = head;
 
     head = temp->next;
@@ -120,6 +126,12 @@ slist_t *deleteMiddle(slist_t *head, int element)
     if (head == NULL)
     {
         printf("Empty linked list\n");
+        return NULL;
+    }
+    else if (head->next == NULL)
+    {
+        freeNode(head);
+        printf("Nothing left in the linked list!");
         return NULL;
     }
 
@@ -148,6 +160,12 @@ slist_t *deleteLast(slist_t *head)
         printf("Empty liked list\n");
         return NULL;
     }
+    else if (head->next == NULL)
+    {
+        freeNode(head);
+        printf("Nothing left in the linked list!");
+        return NULL;
+    }
     slist_t *temp = head;
     while (temp->next->next != NULL)
     {
@@ -165,8 +183,13 @@ slist_t *initSingleLinkedList()
     slist_t *temp = (slist_t *)malloc(sizeof(slist_t));
 
     int number;
-    printf("Please input the number of nodes you want to store in the LikedList:\n");
+    printf("Please input the number of nodes you want to store in the LikedList:\n(better lager than 3 nodes)");
     scanf("%d", &number);
+    if (number < 1)
+    {
+        printf("Empty linked list");
+        return NULL;
+    }
 
     int d;
     printf("Node 1:\n");
@@ -194,10 +217,13 @@ slist_t *initSingleLinkedList()
     return head;
 }
 
-
-
 void freeSList(slist_t *head)
 {
+    if (head == NULL)
+    {
+        printf("Empty linked list!");
+        return;
+    }
     slist_t *itr = head;
     while (itr != NULL)
     {
@@ -209,6 +235,11 @@ void freeSList(slist_t *head)
 
 void printLinkedlist(slist_t *head)
 {
+    if (head == NULL)
+    {
+        printf("Empty linked list!");
+        return;
+    }
     slist_t *itr = head;
     while (itr != NULL)
     {
@@ -291,7 +322,7 @@ int main()
             int d;
             printf("Please input the delete data:");
             scanf("%d", &d);
-            head = deleteMiddle(head,d);
+            head = deleteMiddle(head, d);
             printf("Linkedlist after delete:");
             printLinkedlist(head);
             printf("\n");
