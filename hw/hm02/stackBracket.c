@@ -39,7 +39,7 @@ void push(char c)
     }
     else
     {
-        //printf("Trying to push, but stack is full\n");
+        // printf("Trying to push, but stack is full\n");
         return;
     }
 }
@@ -52,7 +52,7 @@ char pop()
         c = stack[top];
         top--;
     }
-        //printf("Trying to pop, but stack is empty\n");
+    // printf("Trying to pop, but stack is empty\n");
     return c;
 }
 

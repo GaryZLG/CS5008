@@ -102,7 +102,8 @@ int main()
         printf("3. Check empty\n");
         printf("4. Check full\n");
         printf("5. Peek the first element\n");
-        printf("6. Exit\n");
+        printf("6. Print the current queue\n");
+        printf("7. Exit\n");
         printf("Please selecet: ");
 
         int select;
@@ -163,6 +164,12 @@ int main()
             break;
         }
         case 6:
+        {
+            print(q);
+            printf("\n");
+            break;
+        }
+        case 7:
             print(q);
             free(q);
             exit(0);
