@@ -85,6 +85,7 @@ dlist_t *insertHead(dlist_t *head, int element)
 {
     if (head == NULL)
     {
+        
         printf("Empty linked list\n");
         return NULL;
     }
