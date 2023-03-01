@@ -57,11 +57,9 @@ void MergeSort(int num[], int size)
             b[i] = a[i];
         b = a;
     }
-    
+
     free(b);
 }
-
-
 
 int main()
 {

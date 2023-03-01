@@ -12,7 +12,8 @@ void print(int *num, int s)
 // Quick sort
 void QuickSort(int num[], int start, int end)
 {
-    if(start < end){
+    if (start < end)
+    {
         int i = start;
         int j = end - 1;
         int k = num[start];
