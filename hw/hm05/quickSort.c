@@ -42,6 +42,7 @@ void QuickSort(int num[], int start, int end)
         }
         num[i] = k;
 
+        //Recursively call quick sort
         QuickSort(num, start, i);
         QuickSort(num, i + 1, end);
     }

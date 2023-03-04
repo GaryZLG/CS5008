@@ -9,57 +9,48 @@ void print(int *num, int s)
     }
 }
 
-int min(int a, int b)
-{
-    return a < b ? a : b;
-}
-
 // Merge sort
-void MergeSort(int num[], int size)
+void MergeSort(int num[], int div[], int start, int end)
 {
-    int *a = num;
-    int *b = (int *)malloc(size * sizeof(int));
-    int divide, start;
-    for (divide = 1; divide < size; divide += divide)
+    if (start >= end)
     {
-        for (start = 0; start < size; start += divide * 2)
-        {
-            int mid = min(divide + start, size);
-            int end = min(start + divide * 2, size);
-
-            int k = start; // index of array b
-
-            int start1 = start, end1 = mid;
-            int start2 = mid, end2 = end;
-            while (start1 < end1 && start2 < end2)
-            {
-                b[k++] = a[start1] < a[start2] ? a[start1++] : a[start2++];
-            }
-
-            while (start1 < end1)
-            {
-                b[k++] = a[start1++];
-            }
-
-            while (start2 < end2)
-            {
-                b[k++] = a[start2++];
-            }
-        }
-        int *temp = a;
-        a = b;
-        b = temp;
+        return;
     }
 
-    if (a != num)
+    int len = end - start;
+    int mid = (len >> 1) + start;
+    int start1 = start, end1 = mid;
+    int start2 = mid + 1, end2 = end;
+    MergeSort(num, div, start1, end1);
+    MergeSort(num, div, start2, end2);
+    int k = start;
+    while (start1 <= end1 && start2 <= end2)
     {
-        for (int i = 0; i < size; i++)
-            b[i] = a[i];
-        b = a;
+        div[k++] = num[start1] < num[start2] ? num[start1++] : num[start2++];
     }
 
-    free(b);
+    while (start1 <= end1)
+    {
+        div[k++] = num[start1++];
+    }
+
+    while (start2 <= end2)
+    {
+        div[k++] = num[start2++];
+    }
+
+    for (k = start; k <= end; k++)
+    {
+        num[k] = div[k];
+    }
 }
+
+void recursiveMergeSort(int num[], const int len)
+{
+    int div[len];
+    MergeSort(num, div, 0, len - 1);
+}
+
 
 int main()
 {
@@ -79,7 +70,7 @@ int main()
     printf("\n");
 
     printf("Sorted array: \n");
-    MergeSort(n, s);
+    recursiveMergeSort(n, s);
     print(n, s);
 
     return 0;
