@@ -65,7 +65,7 @@ int main()
     print(n, s);
     printf("\n");
 
-    printf("Sorted array: \n");
+    printf("Quick Sorted array: \n");
     QuickSort(n, 0, s);
     print(n, s);
 
