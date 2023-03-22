@@ -46,7 +46,8 @@ node *initBST(node *root, int val)
     return root;
 }
 
-int searchClosest(node *root, double target){
+int searchClosest(node *root, double target)
+{
 
     double min = fabs(root->data - target);
     int result = root->data;
@@ -67,7 +68,8 @@ int searchClosest(node *root, double target){
                 min = ld;
                 result = temp->data;
             }
-        }else if (target > temp->data)
+        }
+        else if (target > temp->data)
         {
             temp = temp->right;
             if (temp == NULL)
@@ -80,7 +82,9 @@ int searchClosest(node *root, double target){
                 min = rd;
                 result = temp->data;
             }
-        }else{
+        }
+        else
+        {
             return temp->data;
         }
     }
@@ -110,16 +114,15 @@ void freeTree(node *n)
     free(n);
 }
 
-
 int main()
 {
-    node *root =NULL;
-printf("Input the number of nodes in your BST: ");
-int n;
-scanf("%d", &n);
-printf("\n");
-for (int i = 0; i < n; i++)
-{
+    node *root = NULL;
+    printf("Input the number of nodes in your BST: ");
+    int n;
+    scanf("%d", &n);
+    printf("\n");
+    for (int i = 0; i < n; i++)
+    {
         printf("Input the %d value: ", i + 1);
         int val;
         scanf("%d", &val);

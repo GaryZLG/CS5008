@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_SIZE 100
+#define MAX_SIZE 10
 
 typedef struct Node
 {
@@ -21,6 +21,7 @@ void Enqueue(int value, int priority)
         return;
     }
     Node *newNode = (Node *)malloc(sizeof(Node));
+
     newNode->data = value;
     newNode->priority = priority;
     newNode->nextNode = NULL;
@@ -53,8 +54,12 @@ void Dequeue()
         printf("Priority Queue is empty.\n");
         return;
     }
-    printf("%d with priority %d has been dequeued from the Priority Queue.\n", headNode->data, headNode->priority);
-    headNode = headNode->nextNode;
+    Node *temp = headNode;
+    printf("%d with priority %d has been dequeued from the Priority Queue.\n",
+           temp->data, temp->priority);
+    printf("\n");
+    headNode = temp->nextNode;
+    free(temp);
     size--;
 }
 
@@ -96,6 +101,7 @@ void PrintQueue()
         printf("%d (Priority: %d)\n", currentNode->data, currentNode->priority);
         currentNode = currentNode->nextNode;
     }
+    printf("\n");
 }
 
 void DestroyQueue()
@@ -122,8 +128,7 @@ int main()
         printf("2. Dequeue\n");
         printf("3. Check if the Priority Queue is empty\n");
         printf("4. Check if the Priority Queue is full\n");
-        printf("5. Destroy the Priority Queue\n");
-        printf("6. Exit\n");
+        printf("5. Destroy the Priority Queue and Exit\n");
         scanf("%d", &option);
         switch (option)
         {
@@ -133,9 +138,11 @@ int main()
             printf("Enter the priority of the value: ");
             scanf("%d", &priority);
             Enqueue(value, priority);
+            PrintQueue();
             break;
         case 2:
             Dequeue();
+            PrintQueue();
             break;
         case 3:
             do
@@ -143,10 +150,12 @@ int main()
                 if (isEmpty())
                 {
                     printf("Priority Queue is empty.\n");
+                    printf("\n");
                 }
                 else
                 {
                     printf("Priority Queue is not empty.\n");
+                    printf("\n");
                 }
                 printf("Press any key to return to the main menu.\n");
             } while (getchar() != '\n');
@@ -157,19 +166,20 @@ int main()
                 if (isFull())
                 {
                     printf("Priority Queue is full.\n");
+                    printf("\n");
                 }
                 else
                 {
                     printf("Priority Queue is not full.\n");
+                    printf("\n");
                 }
                 printf("Press any key to return to the main menu.\n");
             } while (getchar() != '\n');
             break;
         case 5:
             DestroyQueue();
-            break;
-        case 6:
             exit(0);
+            break;
         default:
             printf("Invalid option selected. Please try again.\n");
             break;
