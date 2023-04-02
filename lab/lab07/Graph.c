@@ -32,7 +32,6 @@ void freeAdjList(node **adjList)
 
 int main()
 {
-
     // initiate the graph in matrix
     int matrixG[4][4] = {0};
     matrixG[0][1] = 1;
