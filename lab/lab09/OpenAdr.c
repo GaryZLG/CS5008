@@ -8,14 +8,15 @@ int count;
 int linearProbe(int *table, int size, int value)
 {
     int index = value % size;
+    int key = index;
     int i = 0;
     while (table[index] != -1 && i < size)
     {
-        index = (index + 1) % size;
+        index = (key+ i) % size;
         i++;
     }
 
-    if (i == size)
+    if (i > size)
     {
         printf("Error: table is full; insertion failed.\n");
         return -1;
