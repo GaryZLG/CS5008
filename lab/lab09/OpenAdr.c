@@ -29,10 +29,11 @@ int linearProbe(int *table, int size, int value)
 int quadraticProbe(int *table, int size, int value)
 {
     int index = value % size;
+    int key = index;
     int i = 0;
     while (table[index] != -1 && i < MAXATTEMPT)
     {
-        index = (index + i * i) % size;
+        index = (key + i * i) % size;
         i++;
     }
 
